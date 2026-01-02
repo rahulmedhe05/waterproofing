@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3a4a5e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a2a3e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#grad2)"/>
+  
+  <!-- Luxury bedroom -->
+  <rect x="150" y="180" width="700" height="580" fill="#2a4a6a" stroke="#5a7aa0" stroke-width="2" rx="20"/>
+  
+  <!-- Bed -->
+  <rect x="250" y="320" width="500" height="300" fill="#4a6a8a" rx="10"/>
+  <ellipse cx="500" cy="400" rx="150" ry="60" fill="#5a7a9a"/>
+  
+  <!-- Pillows -->
+  <circle cx="300" cy="350" r="40" fill="#3a5a7a"/>
+  <circle cx="700" cy="350" r="40" fill="#3a5a7a"/>
+  
+  <!-- Window -->
+  <rect x="950" y="250" width="450" height="350" fill="#8ab4d8" stroke="#4a7aa0" stroke-width="3" rx="15"/>
+  <line x1="1175" y1="250" x2="1175" y2="600" stroke="#4a7aa0" stroke-width="3"/>
+  <line x1="950" y1="425" x2="1400" y2="425" stroke="#4a7aa0" stroke-width="3"/>
+  
+  <!-- Curtains -->
+  <polygon points="950,250 850,280 850,600 950,600" fill="#6a4a5a" opacity="0.8"/>
+  <polygon points="1400,250 1500,280 1500,600 1400,600" fill="#6a4a5a" opacity="0.8"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="1700" cy="200" r="60" fill="#2a5a7a" opacity="0.5"/>
+  <circle cx="200" cy="900" r="100" fill="#2a5a7a" opacity="0.5"/>
+  
+  <!-- Text -->
+  <text x="950" y="850" font-size="72" font-weight="bold" fill="#ffffff" font-family="Arial">Luxury Home Interiors</text>
+  <text x="950" y="950" font-size="32" fill="#a0c0e8" font-family="Arial">Your dream home awaits with premium design and comfort</text>
+</svg>
