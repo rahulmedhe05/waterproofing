@@ -1,3 +1,5 @@
+export type LeadStatus = "new" | "converted" | "rejected"
+
 export interface Lead {
   id: string
   fullName: string
@@ -5,6 +7,7 @@ export interface Lead {
   propertyType: string
   budget: string
   city: string
+  status: LeadStatus
   submittedAt: string
 }
 
@@ -17,14 +20,17 @@ export const getLeads = (): Lead[] => {
     const stored = localStorage.getItem(LEADS_KEY)
     if (!stored) return []
     const data = JSON.parse(stored)
-    return Array.isArray(data) ? data : []
+    return Array.isArray(data) ? data.map((lead: any) => ({
+      ...lead,
+      status: lead.status || "new" // Default to "new" for existing leads
+    })) : []
   } catch (error) {
     console.error("Error reading leads:", error)
     return []
   }
 }
 
-export const addLead = (lead: Omit<Lead, "id" | "submittedAt">): Lead => {
+export const addLead = (lead: Omit<Lead, "id" | "submittedAt" | "status">): Lead => {
   const newLead: Lead = {
     id: Date.now().toString(),
     fullName: lead.fullName || "",
@@ -32,6 +38,7 @@ export const addLead = (lead: Omit<Lead, "id" | "submittedAt">): Lead => {
     propertyType: lead.propertyType || "",
     budget: lead.budget || "",
     city: lead.city || "",
+    status: "new",
     submittedAt: new Date().toISOString(),
   }
 
@@ -46,6 +53,19 @@ export const addLead = (lead: Omit<Lead, "id" | "submittedAt">): Lead => {
   }
 
   return newLead
+}
+
+export const updateLeadStatus = (id: string, status: LeadStatus): void => {
+  if (typeof window === "undefined") return
+  try {
+    const leads = getLeads()
+    const updatedLeads = leads.map((lead) =>
+      lead.id === id ? { ...lead, status } : lead
+    )
+    localStorage.setItem(LEADS_KEY, JSON.stringify(updatedLeads))
+  } catch (error) {
+    console.error("Error updating lead status:", error)
+  }
 }
 
 export const getLeadsByMonth = (month: number, year: number) => {
