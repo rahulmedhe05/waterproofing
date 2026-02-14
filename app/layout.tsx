@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     apple: "/apple-icon.svg",
   },
   verification: {
-    google: "google-site-verification-code",
+    google: "googlec1b155cb6acd07f9",
   },
 }
 
