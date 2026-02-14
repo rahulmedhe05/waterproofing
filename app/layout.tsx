@@ -127,6 +127,10 @@ export default function RootLayout({
       {
         "@type": "AggregateRating",
         "@id": "https://localseoservices.com/#rating",
+        itemReviewed: {
+          "@type": "LocalBusiness",
+          "@id": "https://localseoservices.com/#organization",
+        },
         ratingValue: "4.9",
         ratingCount: "50",
         bestRating: "5",
