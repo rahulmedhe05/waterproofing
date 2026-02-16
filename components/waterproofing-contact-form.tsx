@@ -28,18 +28,15 @@ export function WaterproofingContactForm() {
       message: formData.message,
     })
 
-    const message = `
-💧 *WATERPROOFING ENQUIRY* 💧
+    const message = `*WATERPROOFING ENQUIRY*
 
-• *Name:* ${formData.fullName}
-• *Phone:* ${formData.phoneNumber}
-• *City:* ${formData.city}
-• *Service:* ${formData.serviceType}
-• *Message:* ${formData.message || "N/A"}
+Name: ${formData.fullName}
+Phone: ${formData.phoneNumber}
+City: ${formData.city}
+Service: ${formData.serviceType}
+Message: ${formData.message || "N/A"}
 
-―――――――――――――
-_Sent via India Waterproofing Website_
-    `.trim()
+Sent via India Waterproofing Website`.trim()
 
     const whatsappURL = `https://wa.me/${BUSINESS_INFO.whatsapp}?text=${encodeURIComponent(message)}`
     window.open(whatsappURL, "_blank")

@@ -18,16 +18,16 @@ function PageHero({ data }: { data: PageData }) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const message = `
-💧 *WATERPROOFING ENQUIRY* 💧
-• *Name:* ${formData.fullName}
-• *Phone:* ${formData.phoneNumber}
-• *City:* ${formData.city || data.cityName || ""}
-• *Service:* ${formData.serviceType}
-• *Page:* ${data.title}
-• *Message:* ${formData.message || "N/A"}
-―――――――――――――
-_Sent via ${BUSINESS_INFO.domain}_`.trim()
+    const message = `*WATERPROOFING ENQUIRY*
+
+Name: ${formData.fullName}
+Phone: ${formData.phoneNumber}
+City: ${formData.city || data.cityName || ""}
+Service: ${formData.serviceType}
+Page: ${data.title}
+Message: ${formData.message || "N/A"}
+
+Sent via ${BUSINESS_INFO.domain}`.trim()
     window.open(`https://wa.me/${BUSINESS_INFO.whatsapp}?text=${encodeURIComponent(message)}`, "_blank")
   }
 
