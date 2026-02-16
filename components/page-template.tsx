@@ -317,11 +317,11 @@ function CTASection() {
           Get a <strong>free inspection</strong> and professional waterproofing quote. Call now!
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Button size="lg" className="bg-white text-blue-900 hover:bg-gray-100 font-bold text-lg px-8"
+          <Button size="lg" className="bg-green-500 text-white hover:bg-green-600 font-bold text-lg px-8"
             onClick={() => window.open(`https://wa.me/${BUSINESS_INFO.whatsapp}`, "_blank")}>
             <MessageCircle className="w-5 h-5 mr-2" /> WhatsApp Quote
           </Button>
-          <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-bold text-lg px-8"
+          <Button size="lg" className="bg-orange-500 text-white hover:bg-orange-600 font-bold text-lg px-8"
             onClick={() => window.open(`tel:${BUSINESS_INFO.displayPhone}`, "_self")}>
             <Phone className="w-5 h-5 mr-2" /> {BUSINESS_INFO.displayPhone}
           </Button>

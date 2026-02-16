@@ -1,6 +1,7 @@
 import { WaterproofingHero } from "@/components/waterproofing-hero"
 import { ServicesSection } from "@/components/waterproofing-services"
 import { ImageGallery } from "@/components/image-gallery"
+import { VadodaraAreasSection } from "@/components/vadodara-areas-section"
 import { ServiceAreasSection } from "@/components/service-areas-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { WaterproofingFAQ } from "@/components/waterproofing-faq"
@@ -17,6 +18,7 @@ export default function Home() {
       <WaterproofingHero />
       <ServicesSection />
       <ImageGallery />
+      <VadodaraAreasSection />
       <ServiceAreasSection />
       <TestimonialsSection />
       <WaterproofingCTA />

@@ -18,7 +18,7 @@ export function WaterproofingCTA() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button
             size="lg"
-            className="bg-white text-blue-900 hover:bg-gray-100 font-bold text-lg px-10 py-6"
+            className="bg-green-500 text-white hover:bg-green-600 font-bold text-lg px-10 py-6"
             onClick={() => {
               const el = document.getElementById("contact")
               el?.scrollIntoView({ behavior: "smooth" })
@@ -29,8 +29,7 @@ export function WaterproofingCTA() {
           </Button>
           <Button
             size="lg"
-            variant="outline"
-            className="border-white text-white hover:bg-white/10 font-bold text-lg px-10 py-6"
+            className="bg-orange-500 text-white hover:bg-orange-600 font-bold text-lg px-10 py-6"
             onClick={() => window.open(`tel:${BUSINESS_INFO.displayPhone}`, "_self")}
           >
             <Phone className="w-5 h-5 mr-2" />

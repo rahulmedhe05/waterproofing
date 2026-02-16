@@ -58,7 +58,7 @@ export function ImageGallery() {
                 ✕
               </button>
               <img
-                src={GALLERY_IMAGES[selectedImage].src.replace("w=600&h=400", "w=1200&h=800")}
+                src={GALLERY_IMAGES[selectedImage].src}
                 alt={GALLERY_IMAGES[selectedImage].alt}
                 className="w-full rounded-lg"
               />

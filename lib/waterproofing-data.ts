@@ -492,44 +492,49 @@ export const WATERPROOFING_SERVICES = [
 
 export const GALLERY_IMAGES = [
   {
-    src: "https://images.unsplash.com/photo-1607400201889-565b1ee75f8e?w=600&h=400&fit=crop",
-    alt: "Terrace waterproofing with liquid membrane coating",
+    src: "/gallery/iStock-1439288662-1920x1080.webp",
+    alt: "Professional waterproofing work on building terrace",
     caption: "Terrace Waterproofing - Vadodara",
   },
   {
-    src: "https://images.unsplash.com/photo-1632155789866-918e1d54b3ea?w=600&h=400&fit=crop",
-    alt: "Workers applying waterproofing membrane on roof",
-    caption: "Roof Membrane Application",
+    src: "/gallery/idn-worker-apply-waterproofing-01_16-9-e1764423780499.webp",
+    alt: "Worker applying waterproofing membrane coating",
+    caption: "Waterproofing Membrane Application",
   },
   {
-    src: "https://images.unsplash.com/photo-1590644365607-1c5e1cacc664?w=600&h=400&fit=crop",
-    alt: "Building under construction with waterproofing coating",
-    caption: "Building Waterproofing",
+    src: "/gallery/Application-of-Primer-Roof-Waterproofing-1024x768.webp",
+    alt: "Primer application for roof waterproofing",
+    caption: "Roof Waterproofing Primer",
   },
   {
-    src: "https://images.unsplash.com/photo-1574359411659-15573a27fd0c?w=600&h=400&fit=crop",
-    alt: "Professional contractor applying sealant on walls",
-    caption: "Professional Wall Sealing Work",
+    src: "/gallery/Main-1.webp",
+    alt: "Complete waterproofing solution for rooftop",
+    caption: "Rooftop Waterproofing Project",
   },
   {
-    src: "https://images.unsplash.com/photo-1621460249485-36278e7cd9e1?w=600&h=400&fit=crop",
-    alt: "Basement waterproofing membrane installation",
-    caption: "Basement Waterproofing",
+    src: "/gallery/Waterproofing-the-roofs.webp",
+    alt: "Professional roof waterproofing in progress",
+    caption: "Roof Waterproofing Work",
   },
   {
-    src: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?w=600&h=400&fit=crop",
-    alt: "Blue waterproofing coating applied on concrete surface",
-    caption: "Waterproofing Coating Application",
+    src: "/gallery/42-Waterproofing-with-Cement.jpg",
+    alt: "Cementitious waterproofing application on surface",
+    caption: "Cement Waterproofing Treatment",
   },
   {
-    src: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&h=400&fit=crop",
-    alt: "Concrete building exterior with protective coating",
-    caption: "Exterior Waterproofing",
+    src: "/gallery/waterproofing-services.jpg",
+    alt: "Waterproofing services for residential building",
+    caption: "Residential Waterproofing",
   },
   {
-    src: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop",
-    alt: "Construction worker on site doing waterproofing",
+    src: "/gallery/waterproofing-services (1).jpg",
+    alt: "Professional waterproofing contractors at work",
     caption: "Commercial Waterproofing Project",
+  },
+  {
+    src: "/gallery/images.jpeg",
+    alt: "Waterproofing coating applied on concrete slab",
+    caption: "Slab Waterproofing Solution",
   },
 ]
 
