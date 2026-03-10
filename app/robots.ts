@@ -1,4 +1,5 @@
-import { MetadataRoute } from "next"
+import { MetadataRoute } from "next";
+import { SEO_CONFIG } from "@/lib/seo-config";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,15 +7,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/leads"],
-      },
-      {
-        userAgent: "Googlebot",
-        allow: "/",
-        disallow: ["/api/", "/leads"],
+        disallow: ["/api/", "/admin/", "/_next/", "/private/"],
       },
     ],
-    sitemap: "https://waterproofingvadodara.com/sitemap.xml",
-    host: "https://waterproofingvadodara.com",
-  }
+    sitemap: `${SEO_CONFIG.siteUrl}/sitemap.xml`,
+  };
 }
