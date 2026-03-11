@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { notifyGoogleIndexing, batchNotifyGoogleIndexing } from "@/lib/google-indexing";
+import {
+  notifyGoogleIndexing,
+  batchNotifyGoogleIndexing,
+  pingSitemapToSearchEngines,
+} from "@/lib/google-indexing";
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,13 +16,24 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { urls, url } = body;
+    const { urls, url, action } = body;
 
+    // Ping sitemap to Google & Bing
+    if (action === "ping-sitemap") {
+      const pingResults = await pingSitemapToSearchEngines();
+      return NextResponse.json({
+        action: "ping-sitemap",
+        ...pingResults,
+      });
+    }
+
+    // Single URL indexing
     if (url) {
       const result = await notifyGoogleIndexing(url);
       return NextResponse.json(result);
     }
 
+    // Batch URL indexing
     if (urls && Array.isArray(urls)) {
       const results = await batchNotifyGoogleIndexing(urls);
       return NextResponse.json({
@@ -30,7 +45,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json(
-      { error: "Provide 'url' or 'urls' in request body" },
+      { error: "Provide 'url', 'urls', or 'action' in request body" },
       { status: 400 }
     );
   } catch (error) {

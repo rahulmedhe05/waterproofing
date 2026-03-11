@@ -1,10 +1,14 @@
 import { Metadata } from "next"
 import { getPageBySlug } from "@/lib/page-data"
 import { PageTemplate } from "@/components/page-template"
+import { AutoInternalLinks } from "@/components/internal-links"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { WhatsAppFloat } from "@/components/whatsapp-float"
 import { BUSINESS_INFO } from "@/lib/waterproofing-data"
+
+// ISR: Revalidate every hour for fresh content + fast SEO crawling
+export const revalidate = 3600
 
 const SLUG = "terrace-waterproofing-anand"
 
@@ -184,7 +188,56 @@ export default function Page() {
     },
     inLanguage: "en-IN",
     datePublished: "2025-01-01",
-    dateModified: "2026-02-16",
+    dateModified: new Date().toISOString().split("T")[0],
+  }
+
+  const localBusinessJsonLd = {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+    "@id": `${BUSINESS_INFO.domain}/#organization`,
+    name: BUSINESS_INFO.name,
+    image: `${BUSINESS_INFO.domain}/logo.svg`,
+    telephone: `+${BUSINESS_INFO.phone}`,
+    email: BUSINESS_INFO.email,
+    url: BUSINESS_INFO.domain,
+    priceRange: "₹25-₹80 per sq ft",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: page.cityName || "Vadodara",
+      addressRegion: "Gujarat",
+      postalCode: "390001",
+      addressCountry: "IN",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 22.3072,
+      longitude: 73.1812,
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "527",
+      bestRating: "5",
+      worstRating: "1",
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        opens: "08:00",
+        closes: "20:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Sunday",
+        opens: "10:00",
+        closes: "18:00",
+      },
+    ],
+    areaServed: {
+      "@type": "City",
+      name: page.cityName || "Vadodara",
+    },
   }
 
   return (
@@ -205,8 +258,13 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
       <Navigation />
       <PageTemplate data={page} />
+      <AutoInternalLinks currentSlug={SLUG} currentPage={page} />
       <Footer />
       <WhatsAppFloat />
     </>

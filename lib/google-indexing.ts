@@ -38,7 +38,7 @@ async function getAccessToken(): Promise<string> {
     })
   ).toString("base64url");
 
-  // Sign with private key using Web Crypto
+  // Sign with private key using Node crypto
   const crypto = await import("crypto");
   const sign = crypto.createSign("RSA-SHA256");
   sign.update(`${header}.${payload}`);
@@ -113,5 +113,34 @@ export async function batchNotifyGoogleIndexing(
       await new Promise((resolve) => setTimeout(resolve, 1000));
     }
   }
+  return results;
+}
+
+// Ping Google & Bing with sitemap URL after deploy
+export async function pingSitemapToSearchEngines(): Promise<{
+  google: boolean;
+  bing: boolean;
+}> {
+  const sitemapUrl = encodeURIComponent(`${SEO_CONFIG.siteUrl}/sitemap.xml`);
+  const results = { google: false, bing: false };
+
+  try {
+    const googlePing = await fetch(
+      `https://www.google.com/ping?sitemap=${sitemapUrl}`
+    );
+    results.google = googlePing.ok;
+  } catch {
+    results.google = false;
+  }
+
+  try {
+    const bingPing = await fetch(
+      `https://www.bing.com/ping?sitemap=${sitemapUrl}`
+    );
+    results.bing = bingPing.ok;
+  } catch {
+    results.bing = false;
+  }
+
   return results;
 }
