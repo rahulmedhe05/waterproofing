@@ -41,56 +41,60 @@ class GoogleIndexingAPI {
     }
   }
 
-  private async getAuthenticatedClient(): Promise<JWT> {
+  private async getAccessToken(): Promise<string> {
     if (!this.serviceAccountKey) {
       throw new Error("Service account key not loaded")
     }
 
-    this.client = new JWT({
+    const jwt = new JWT({
       email: this.serviceAccountKey.client_email,
       key: this.serviceAccountKey.private_key,
       scopes: ["https://www.googleapis.com/auth/indexing"],
     })
 
-    return this.client
+    const credentials = await jwt.authorize()
+    const accessToken = credentials.access_token
+
+    if (!accessToken) {
+      throw new Error("Failed to obtain access token")
+    }
+
+    return accessToken
   }
 
   async submitUrl(url: string, type: "URL_UPDATED" | "URL_DELETED" = "URL_UPDATED"): Promise<boolean> {
     try {
-      const client = await this.getAuthenticatedClient()
+      const accessToken = await this.getAccessToken()
 
-      const response: GaxiosResponse = await client.request({
-        url: "https://indexing.googleapis.com/batch",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: {
-          requests: [
-            {
-              indexingRequestUrl: url,
-              requestMetadata: {
-                notifyTime: new Date().toISOString(),
-              },
-              type: type,
-            },
-          ],
-        },
+      const body = JSON.stringify({
+        url: url,
+        type: type,
       })
 
-      if (response.status !== 200) {
-        console.error(`Failed to index ${url}:`, response.data)
+      const response = await fetch("https://indexing.googleapis.com/v3/urlNotifications:publish", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: body,
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        if (data.error?.message?.includes("URL ownership")) {
+          console.error(`⚠️  Domain not verified in Google Search Console: ${url}`)
+        } else {
+          console.error(`Failed to index ${url}:`, data.error?.message || JSON.stringify(data))
+        }
         return false
       }
 
       console.log(`✅ Indexed: ${url}`)
       return true
     } catch (error: any) {
-      if (error.response?.data?.error) {
-        console.error(`Error submitting ${url}:`, JSON.stringify(error.response.data.error, null, 2))
-      } else {
-        console.error(`Error submitting ${url}:`, error.message)
-      }
+      console.error(`Error submitting ${url}:`, error.message)
       return false
     }
   }
