@@ -1,35 +1,15 @@
 "use client"
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Shield, Phone, Droplets, Star, Clock, CheckCircle2, ChevronDown, ChevronUp, MapPin, MessageCircle } from "lucide-react"
+import { Shield, Droplets, Star, CheckCircle2, ChevronDown, ChevronUp, MapPin } from "lucide-react"
 import { BUSINESS_INFO, WATERPROOFING_SERVICES, GALLERY_IMAGES } from "@/lib/waterproofing-data"
 import type { PageData } from "@/lib/page-data"
 import Link from "next/link"
+import { HeroForm } from "@/components/hero-form"
 
 // ===================================================
 // HERO WITH FORM
 // ===================================================
 function PageHero({ data }: { data: PageData }) {
-  const [formData, setFormData] = useState({
-    fullName: "", phoneNumber: "", city: "", serviceType: "", message: "",
-  })
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const message = `*WATERPROOFING ENQUIRY*
-
-Name: ${formData.fullName}
-Phone: ${formData.phoneNumber}
-City: ${formData.city || data.cityName || ""}
-Service: ${formData.serviceType}
-Page: ${data.title}
-Message: ${formData.message || "N/A"}
-
-Sent via ${BUSINESS_INFO.domain}`.trim()
-    window.open(`https://wa.me/${BUSINESS_INFO.whatsapp}?text=${encodeURIComponent(message)}`, "_blank")
-  }
 
   return (
     <section className="relative w-full min-h-[70vh] overflow-hidden pt-16 sm:pt-20 bg-gradient-to-br from-blue-900 via-blue-800 to-cyan-700">
@@ -97,49 +77,11 @@ Sent via ${BUSINESS_INFO.domain}`.trim()
             </div>
           </div>
           <div className="md:col-span-2 order-1 md:order-2">
-            <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-2xl">
-              <div className="text-center mb-4">
-                <h2 className="text-xl font-bold text-gray-900">Get Free Quote</h2>
-                <p className="text-sm text-gray-600">Free inspection & same-day response</p>
-              </div>
-              <form onSubmit={handleSubmit} className="space-y-3">
-                <Input placeholder="Your Name *" required value={formData.fullName}
-                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} className="border-gray-300 text-gray-900" />
-                <Input placeholder="Phone Number *" type="tel" required value={formData.phoneNumber}
-                  onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })} className="border-gray-300 text-gray-900" />
-                <select required value={formData.city}
-                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm bg-white text-gray-900">
-                  <option value="">Select City *</option>
-                  <option value="Vadodara">Vadodara</option><option value="Ahmedabad">Ahmedabad</option>
-                  <option value="Surat">Surat</option><option value="Anand">Anand</option>
-                  <option value="Nadiad">Nadiad</option><option value="Bharuch">Bharuch</option>
-                  <option value="Gandhinagar">Gandhinagar</option><option value="Other">Other</option>
-                </select>
-                <select required value={formData.serviceType}
-                  onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm bg-white text-gray-900">
-                  <option value="">Service Needed *</option>
-                  <option value="Terrace Waterproofing">Terrace Waterproofing</option>
-                  <option value="Roof Waterproofing">Roof Waterproofing</option>
-                  <option value="Basement Waterproofing">Basement Waterproofing</option>
-                  <option value="Bathroom Waterproofing">Bathroom Waterproofing</option>
-                  <option value="Wall Waterproofing">Wall Waterproofing</option>
-                  <option value="Injection Grouting">Injection Grouting</option>
-                  <option value="Dampness Treatment">Dampness Treatment</option>
-                  <option value="Other">Other</option>
-                </select>
-                <textarea placeholder="Describe your problem (optional)" value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm min-h-[60px] bg-white text-gray-900 placeholder:text-gray-400" rows={2} />
-                <Button type="submit" className="w-full bg-blue-800 hover:bg-blue-900 text-white font-bold text-lg py-5">
-                  Get Free Quote on WhatsApp
-                </Button>
-                <p className="text-xs text-center text-gray-500">
-                  Or call: <a href={`tel:${BUSINESS_INFO.displayPhone}`} className="text-blue-700 font-bold">{BUSINESS_INFO.displayPhone}</a>
-                </p>
-              </form>
-            </div>
+            <HeroForm
+              serviceType={data.type}
+              headline="Get Free Quote"
+              subheading="Free inspection & same-day response"
+            />
           </div>
         </div>
       </div>
