@@ -1,6 +1,8 @@
 "use client"
 
-import { Shield, Droplets, Star, CheckCircle2, ChevronDown, ChevronUp, MapPin } from "lucide-react"
+import { useState } from "react"
+import { Shield, Droplets, Star, CheckCircle2, ChevronDown, ChevronUp, MapPin, Clock, MessageCircle, Phone } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { BUSINESS_INFO, WATERPROOFING_SERVICES, GALLERY_IMAGES } from "@/lib/waterproofing-data"
 import type { PageData } from "@/lib/page-data"
 import Link from "next/link"
