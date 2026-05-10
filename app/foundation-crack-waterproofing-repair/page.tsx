@@ -110,7 +110,7 @@ export default function Page() {
     <>
       <Navigation />
       <PageTemplate data={page} />
-      <AutoInternalLinks currentSlug={page.slug} />
+      <AutoInternalLinks currentSlug={page.slug} currentPage={page} />
       <Footer />
       <WhatsAppFloat />
 
